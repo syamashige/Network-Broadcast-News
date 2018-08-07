@@ -4,16 +4,88 @@ const clients = [];
 
 const server = net.createServer((client) => {
     console.log("Testing the server");
-    // console.log("server", server);
-    // console.log("client", client);
+    console.log("server", server);
+    console.log("client", client);
     // console.log("address", client.localAddress)
     // console.log("client address", client.address());
     // console.log("Server Address: ", server.address());
-    client.write("client. write on the server side");
+    
+    // Welcome Board
+    client.write(`
+                                _____
+     ( )( )       ^---^       (| .  .|)       o----o        o----o
+    (x _ x)      ( ^o^ )       ( (Y) )        ('(Y)')       (^(x)^)
+    ('')('')*    (  uu  )     (" )_(" )_/     c(")_(")      c(")_(")
+    
+    
+
+    `);
     client.on("data", data => {
-        console.log(data.toString());
+        // console.log(data.toString());
 
         const msg = data.toString();
+
+        // client.id = client.remoteAddress;
+        // client.username;
+        if (msg.includes("/pet bunny")) {
+            client.pet = "bunny"
+            client.write("New Pet Bunny")
+        } 
+        
+        if (msg.includes("/mypet")) {
+            client.write("Pet:" + client.pet);
+        }
+
+
+        if (msg.includes("bunny")) {
+            client.write(`
+            ( )( )
+           (x _ x)
+           ('')('')*
+        `
+            )
+        }
+        else if (msg.includes("pig")) {
+            client.write(`
+             ^---^
+            ( ^o^ )
+            (  uu  )
+            `)
+        }
+        else if (msg.includes("kurbydance")) {
+            client.write(`
+             (>0.0)>
+             (^0.0^)
+             <(0.0<)
+             (v0.0v)
+            `)
+        }
+        else if (msg.includes("dog")) {
+            client.write(`
+               _____
+             (| .  .|)
+              ( (Y) )
+             (" )_(" )_/
+
+            `)
+        }
+        else if (msg.includes("babybear")) {
+            client.write(`
+                o----o
+                ('(Y)')
+                c(")_(")
+            `)
+        }
+        else if (msg.includes("hamham")) {
+            client.write(`
+                o----o
+                (^(x)^)
+                c(")_(")
+            `)
+        }   
+
+        
+        // msg("\x1b[46m");
         // console.log("message?: ", msg)
 
         // client.setTimeout(5000);
@@ -26,25 +98,33 @@ const server = net.createServer((client) => {
         // setTimeout(function () {
         //     clients[1].destroy();
         // }, 5000);
-        for (let i = 0; i < clients.length; i++) {
-            clients[i].write("Message: " + msg);
+        // for (let i = 0; i < clients.length; i++) {
+        //     clients[i].write("Message: " + msg);
 
-            setTimeout(function () {
-                clients[i].destroy();
-            }, 5000);
+        //     // setTimeout(function () {
+        //     //     clients[i].destroy();
+        //     // }, 5000);
         
-            // clients[i].setTimeout(5000);
-            // clients[i].on("timeout", () => {
-            //     console.log("client " + i + " timed out")
-            //     console.log(client.connections);
-            //     clients[i].destroy();
-            // })
+        //     // clients[i].setTimeout(5000);
+        //     // clients[i].on("timeout", () => {
+        //     //     console.log("client " + i + " timed out")
+        //     //     console.log(client.connections);
+        //     //     clients[i].destroy();
+        //     // })
+        // }
 
-        }
-     });
+        clients.map(user => {
+            user.write(msg);
+            // console.log("\x1b[36", msg);
+            // setTimeout(function () {
+            //     // this.destroy(); // kills the server 
+            //     user.end();
+            // }, 20000);
+        })
+    });
 
  clients.push(client);
-console.log("Client is: ", client)
+// console.log("Client is: ", client)
     
 });
 
