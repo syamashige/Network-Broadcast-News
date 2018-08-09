@@ -3,9 +3,9 @@ const net = require("net");
 const clients = [];
 
 const server = net.createServer((client) => {
-    console.log("Testing the server");
-    console.log("server", server);
-    console.log("client", client);
+    // console.log("Testing the server");
+    // console.log("server", server);
+    console.log("client", "\x1b[32m", client);
     // console.log("address", client.localAddress)
     // console.log("client address", client.address());
     // console.log("Server Address: ", server.address());
@@ -17,16 +17,16 @@ const server = net.createServer((client) => {
     (x _ x)      ( ^o^ )       ( (Y) )        ('(Y)')       (^(x)^)
     ('')('')*    (  uu  )     (" )_(" )_/     c(")_(")      c(")_(")
     
-    
+                   WELCOME TO THIS MEDIOCRE CHAT THING!
 
     `);
+
+    client.write("Please enter a username")
     client.on("data", data => {
         // console.log(data.toString());
 
         const msg = data.toString();
-
-        // client.id = client.remoteAddress;
-        // client.username;
+        
         if (msg.includes("/pet bunny")) {
             client.pet = "bunny"
             client.write("New Pet Bunny")
@@ -114,12 +114,17 @@ const server = net.createServer((client) => {
         // }
 
         clients.map(user => {
-            user.write(msg);
+            user.write(client.username + ": " + " " + msg);     // Unfortunately writes the username and then indents the msg
+
+            if (!client.username) {
+                client.username = msg;
+                console.log("client info", client)
+            }
             // console.log("\x1b[36", msg);
-            // setTimeout(function () {
-            //     // this.destroy(); // kills the server 
-            //     user.end();
-            // }, 20000);
+            setTimeout(function () {
+                // this.destroy(); // kills the server 
+                user.end();
+            }, 20000);
         })
     });
 
