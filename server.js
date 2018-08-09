@@ -27,7 +27,7 @@ const server = net.createServer((client) => {
 
         const msg = data.toString();
 
-        if (msg.includes("/character-menu")) {
+        if (msg.includes("/menu")) {
             client.write(`
             Try out these commands: 
             * "bunny" to see a cheeky bunny
