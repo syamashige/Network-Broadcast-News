@@ -26,6 +26,18 @@ const server = net.createServer((client) => {
         // console.log(data.toString());
 
         const msg = data.toString();
+
+        if (msg.includes("/character-menu")) {
+            client.write(`
+            Try out these commands: 
+            * "bunny" to see a cheeky bunny
+            * "pig" to see a chubby pig
+            * "kurbydance" to see a little kurby dance
+            * "dog" to see a cute doggie
+            * "babybear" to see a not so little baby bear
+            * "hamham" to see a hamster that had one too many snacks
+            `)
+        }
         
         if (msg.includes("/pet bunny")) {
             client.pet = "bunny"
