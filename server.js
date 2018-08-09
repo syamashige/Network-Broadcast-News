@@ -113,8 +113,11 @@ const server = net.createServer((client) => {
         //     // })
         // }
 
+        
+
         clients.map(user => {
-            user.write(client.username + ": " + " " + msg);     // Unfortunately writes the username and then indents the msg
+            let message = client.username + ": " + " " + msg;
+            user.write(message);     // Unfortunately writes the username and then indents the msg
 
             if (!client.username) {
                 client.username = msg;
