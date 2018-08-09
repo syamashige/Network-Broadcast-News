@@ -51,48 +51,50 @@ const server = net.createServer((client) => {
 
         if (msg.includes("bunny")) {
             client.write(`
-            ( )( )
-           (x _ x)
-           ('')('')*
-        `
-            )
+         ( )( )
+        (x _ x)
+        ('')('')*
+            `)
         }
         else if (msg.includes("pig")) {
             client.write(`
-             ^---^
-            ( ^o^ )
-            (  uu  )
+         ^---^
+        ( ^o^ )
+        (  uu  )
+
             `)
         }
         else if (msg.includes("kurbydance")) {
             client.write(`
-             (>0.0)>
-             (^0.0^)
-             <(0.0<)
-             (v0.0v)
+        (>0.0)>
+        (^0.0^)
+        <(0.0<)
+        (v0.0v)
+
             `)
         }
         else if (msg.includes("dog")) {
             client.write(`
-               _____
-             (| .  .|)
-              ( (Y) )
-             (" )_(" )_/
+          _____
+        (| .  .|)
+         ( (Y) )
+         (" )_(" )_/
 
             `)
         }
         else if (msg.includes("babybear")) {
             client.write(`
-                o----o
-                ('(Y)')
-                c(")_(")
+         o----o
+         ('(Y)')
+         c(")_(")
+    
             `)
         }
         else if (msg.includes("hamham")) {
             client.write(`
-                o----o
-                (^(x)^)
-                c(")_(")
+         o----o
+         (^(x)^)
+         c(")_(")
             `)
         }   
 
