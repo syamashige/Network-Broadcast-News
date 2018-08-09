@@ -140,7 +140,8 @@ const server = net.createServer((client) => {
             // console.log("\x1b[36", msg);
             setTimeout(function () {
                 // this.destroy(); // kills the server 
-                user.end();
+                user.write("You are out!")
+                user.destroy();
             }, 20000);
         })
     });
